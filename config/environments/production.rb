@@ -14,7 +14,7 @@ config.log_level = :debug
 
 
 # Enable serving of images, stylesheets, and javascripts from an asset server
-config.action_controller.asset_host = "http://confreaks.com"
+config.action_controller.asset_host = "http://cdn.confreaks.com.cdngc.net"
 
 config.gem "ruby-mysql", :lib => "mysql"
 
