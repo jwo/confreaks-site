@@ -154,7 +154,7 @@ class Admin::VideosController < Admin::Controller
     all_done = true
     a.video.assets.each do |as|
       unless as.generated_by_asset_id == 0 && as.generated_by_asset_id.nil?
-        unless as.zencoder_job_completed == true
+        unless as.zencoder_job_complete == true
           all_done = false
         end
       end
@@ -162,7 +162,7 @@ class Admin::VideosController < Admin::Controller
 
     if all_done
       generated_by_asset = Asset.find(a.generated_by_asset_id)
-      generated_by_asset.zencoder_job_completed = true
+      generated_by_asset.zencoder_job_complete = true
       generated_by_asset.save
     end
 
