@@ -1,6 +1,6 @@
 .asset-box.small
   -if session.user && session.user.admin?
-    =link_to asset_display.display_description, asset_display.data.url
+    =link_to asset_display.display_description, "#{ActionController::Base.asset_host}#{asset_display.data.url}"
     -unless asset_display.zencoder_output_id || asset_display.zencoder_job_id
       =link_to 'ZC', admin_encode_path(asset_display)
       =link_to 'zcs', admin_encode_small_path(asset_display)
