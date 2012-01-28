@@ -7,4 +7,4 @@
     =link_to 'Refresh', admin_refresh_path(asset_display)
   -else
     -unless asset_display.data_file_name.nil?
-      =link_to asset_display.display_description, asset_display.data.url
+      =link_to asset_display.display_description, "#{ActionController::Base.asset_host}#{asset_display.data.url}"
