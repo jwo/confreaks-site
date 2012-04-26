@@ -6,8 +6,11 @@
   %h3
     =link_to @video.event.display_name, event_path(@video.event)
   .video-frame
-    #html5_player
-      =render :partial => 'videos/video_player_html5', :locals => { :video => @video }
+    -if @video.youtube_code
+      =render :partial => 'videos/youtube_player', :locals => {:video => @video}
+    -else
+      #html5_player
+        =render :partial => 'videos/video_player_html5', :locals => { :video => @video }
   .video-twitter
     =link_to 'Tweet', 'http://twitter.com/share', :class => 'twitter-share-button', 'data-text' => "#{@video.title} by #{@video.display_presenters}", 'data-count' => 'vertical', 'data-via' => 'confreaks'
     =javascript_include_tag 'http://platform.twitter.com/widgets.js', :type => 'text/javascript'

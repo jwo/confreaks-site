@@ -50,8 +50,11 @@
         %br
         Streaming:
         =video.streaming_video.nil? ? "None": video.streaming_video.id
-    .clear
-    .abstract
-      -unless video.abstract.empty?
-        =RDiscount.new(truncate(video.abstract, :length => 250)).to_html
+        -if video.youtube_code
+          %br
+          =link_to "Watch this video on Youtube.com", "http://youtube.com/watch?v=#{video.youtube_code}"
+  .clear
+  .abstract
+    -unless video.abstract.empty?
+      =RDiscount.new(truncate(video.abstract, :length => 250)).to_html
   .clear

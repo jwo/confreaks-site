@@ -1,7 +1,7 @@
 =content_for :secondary_content do
   =render :partial => 'main/recent_events', :locals => {:events => @recent_events}
 .center
-  -if @video.event
+  -if @video && @video.event
     %h3
       Featured Video
     %span.small

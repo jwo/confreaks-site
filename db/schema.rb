@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111104135041) do
+ActiveRecord::Schema.define(:version => 20120420023650) do
 
   create_table "activities", :force => true do |t|
     t.string   "message"
@@ -190,6 +190,7 @@ ActiveRecord::Schema.define(:version => 20111104135041) do
     t.datetime "announce_date"
     t.text     "note"
     t.integer  "room_id",            :default => 1
+    t.string   "youtube_code"
   end
 
   add_index "videos", ["event_id"], :name => "by_event_id"

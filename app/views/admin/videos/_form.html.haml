@@ -52,6 +52,10 @@
     =f.collection_select :streaming_asset_id, @video.assets, :id, :display_description, :include_blank => true
 
   .form-field
+    =f.label :youtube_code, "Youtube Code"
+    =f.text_field :youtube_code
+
+  .form-field
     =f.label :available, "Available"
     =f.check_box :available
 
