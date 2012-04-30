@@ -16,6 +16,3 @@ gem "newrelic_rpm"
 gem "ruby-mysql"
 gem "capistrano"
 
-group :test do
-  gem "modelizer",    "1.3.1"
-end
