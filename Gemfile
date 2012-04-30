@@ -1,4 +1,4 @@
-source :gemcutter
+source :rubygems
 
 gem "rake"
 gem "rails",         "= 2.3.14"
@@ -15,3 +15,5 @@ gem "zencoder"
 gem "newrelic_rpm"
 gem "ruby-mysql"
 gem "capistrano"
+
+gem "modelizer",    "1.3.1"
