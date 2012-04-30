@@ -6,7 +6,7 @@
   %h3
     =link_to @video.event.display_name, event_path(@video.event)
   .video-frame
-    -if @video.youtube_code
+    -unless @video.youtube_code.blank?
       =render :partial => 'videos/youtube_player', :locals => {:video => @video}
     -else
       #html5_player
