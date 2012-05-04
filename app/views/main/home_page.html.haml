@@ -9,7 +9,7 @@
     =link_to @video.event.display_name, event_path(@video.event)
     .video-frame
       -unless @video.youtube_code.blank?
-        =render :partial => 'videos/youtube_player', :locals => @video}
+        =render :partial => 'videos/youtube_player', :locals => {:video => @video}
       -else
         -if @player == "flash" || (@p.browser == "Firefox" && @p.browser_version_major.to_i < 4)
           #flash_player
