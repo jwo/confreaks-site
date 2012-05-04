@@ -8,12 +8,15 @@
       from
     =link_to @video.event.display_name, event_path(@video.event)
     .video-frame
-      -if @player == "flash" || (@p.browser == "Firefox" && @p.browser_version_major.to_i < 4)
-        #flash_player
-          =render :partial => 'videos/video_player', :locals => { :video => @video }
+      -unless @video.youtube_code.blank?
+        =render :partial => 'videos/youtube_player', :locals => @video}
       -else
-        #html5_player
-          =render :partial => 'videos/video_player_html5', :locals => { :video => @video }
+        -if @player == "flash" || (@p.browser == "Firefox" && @p.browser_version_major.to_i < 4)
+          #flash_player
+            =render :partial => 'videos/video_player', :locals => { :video => @video }
+        -else
+          #html5_player
+            =render :partial => 'videos/video_player_html5', :locals => { :video => @video }
     .video-title
       =link_to @video.title, video_path(@video)
       -if session.user && session.user.admin?
