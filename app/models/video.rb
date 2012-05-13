@@ -48,7 +48,7 @@ class Video < ActiveRecord::Base
   def self.search(search, all = "1")
     if all == "1"
       if search
-        search_results = self.find(:all, 
+        search_results = self.find(:all,
                        :conditions => ['title like ?', "%#{search}%"],
                        :order => 'post_date desc')
       else
@@ -56,7 +56,7 @@ class Video < ActiveRecord::Base
       end
     else
       if search
-        search_results = available.find(:all, 
+        search_results = available.find(:all,
              :conditions => ['title like ?', "%#{search}%"],
              :order => 'post_date desc')
       else
@@ -72,15 +72,16 @@ class Video < ActiveRecord::Base
   end
 
   def self.random
-      if Rails.env == "production" || Rails.env == "development"
-        order = 'rand()'
-      else
-        order = 'random()'
-      end
+    if Rails.env == "production" || Rails.env == "development"
+      order = 'rand()'
+    else
+      order = 'random()'
+    end
 
-      random_video = Video.first(:include => [:event],
-               :conditions => ["streaming_asset_id is not null and available = ? and recorded_at >= ? and events.ready = ?", true, Date.today - 180, true],
-               :order => order)
+    random_video = Video.first(:include => [:event],
+                               :conditions => ["streaming_asset_id is not null and available = ? and recorded_at >= ? and events.ready = ?", true, Date.today - 180, true],
+                               :order => order)
+
     return random_video
   end
 
