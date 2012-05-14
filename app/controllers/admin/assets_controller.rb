@@ -59,14 +59,10 @@ class Admin::AssetsController < Admin::Controller
   # created creates a 640x360 and an audio file only, NO 1280x720
   def encode_small
     encode "small"
-
-    render :action => 'encode'
   end
 
   def encode_audio_only
     encode "audio"
-
-    render :action => 'encode'
   end
 
   def refresh_meta_data
