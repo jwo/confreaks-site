@@ -271,6 +271,31 @@ namespace :presentation do
       v.save
     end
 
+    desc "Attach the results of a zao encode job"
+    task :zao, [:video_id] => :environment do | t, args |
+      v = Video.find(args[:video_id])
+
+      base_dir = "#{RAILS_ROOT}/../../../source/"
+
+      puts "Attempting to attach Zencoder output to '#{v.title}'."
+
+      # Attach the audio file
+      file = "#{v.to_param}.mp3"
+      a = Asset.new
+      a.data = File.new("#{base_dir}zencoder/#{file}")
+
+      a.asset_type_id = 4
+      v.assets << a
+      v.save
+
+      puts "File #{file} has been attached."
+
+      puts "Marking presentation #{v.id} - #{v.title} as available"
+      v.available =true
+      v.save
+
+    end
+
     desc "Attach the results of a zcs encode job"
     task :zos, [:video_id] => :environment do | t, args |
 
