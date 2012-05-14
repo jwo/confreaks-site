@@ -58,6 +58,10 @@ ActionController::Routing::Routes.draw do |map|
     admin.encode_small '/assets/encode_small/:id',
                          :controller => :assets,
                          :action => "encode_small"
+    admin.encode_audio_only '/assets/encode_audio_only/:id',
+                         :controller => :assets,
+                         :action => "encode_audio_only"
+
     admin.refresh  '/assets/refresh/:id',
                          :controller => :assets,
                          :action => 'refresh_meta_data'

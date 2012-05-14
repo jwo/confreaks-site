@@ -15,7 +15,9 @@ class Admin::AssetsController < Admin::Controller
 
     if size.nil?
       template_file = "#{RAILS_ROOT}/lib/templates/zencoder-job-template.erb"
-    else
+    elsif size == "audio"
+      template_file = "#{RAILS_ROOT}/lib/templates/zencoder-job-template-audio-only.erb"
+    elsif size == "small"
       template_file = "#{RAILS_ROOT}/lib/templates/zencoder-job-template-small-only.erb"
     end
 
@@ -57,6 +59,12 @@ class Admin::AssetsController < Admin::Controller
   # created creates a 640x360 and an audio file only, NO 1280x720
   def encode_small
     encode "small"
+
+    render :action => 'encode'
+  end
+
+  def encode_audio_only
+    encode "audio"
 
     render :action => 'encode'
   end

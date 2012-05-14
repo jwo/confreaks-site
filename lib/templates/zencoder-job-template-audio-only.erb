@@ -1,0 +1,31 @@
+{
+  "test": 0,
+  "input": "http://confreaks.com<%=@asset.data.url%>",
+  "output": [
+    {
+      "base_url": "ftp://zencoder:v1d30d0n3@confreaks.com/source/zencoder/",
+      "filename": "<%=@base_file_name%>.mp3",
+      "label": "audio",
+      "notifications": [
+        { "format": "json",
+          "url": "http://confreaks.com/zc-callback/"
+        }
+      ],
+      "audio_codec": "mp3",
+      "audio_quality": 3,
+      "skip_video": 1,
+      "notifications": [
+        { "format": "json",
+          "url": "http://confreaks.com/zc-callback/"
+        }
+      ],
+      "thumbnails": {
+        "number": 5,
+        "size": "640x360",
+        "base_url": "ftp://zencoder:v1d30d0n3@confreaks.com/source/zencoder/",
+        "prefix": "<%=@base_file_name%>-thumb"
+      }
+    }
+  ],
+  "api_key": "<%=Confreaks.config[:zencoder_api_key]%>"
+}
