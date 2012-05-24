@@ -1,0 +1,13 @@
+common: &common
+  dev_key: your dev key
+  username: your username
+  password: your password
+
+test:
+  <<: *common
+
+development:
+  <<: *common
+
+production:
+  <<: *common
