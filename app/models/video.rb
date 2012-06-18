@@ -119,9 +119,17 @@ class Video < ActiveRecord::Base
   def display_presenters
     out = ""
     self.presenters.each do |p|
-      out = out + p.display_name + ", "
+      out += p.display_name + ", "
     end
-    out = out [0,out.length-2]
+    out = out[0,out.length-2]
+  end
+
+  def display_twitter_presenters
+    out = ""
+    out = self.presenters.each do |p|
+      out += p.twitter_name.nil? ? p.display_name : p.twitter_name + ", "
+    end
+    out = out[0,out.length-2]
   end
 end
 
