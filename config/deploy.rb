@@ -1,5 +1,8 @@
 require 'new_relic/recipes'
 
+set :whenever_command, "bundle exec whenever"
+require 'whenever/capistrano'
+
 fail_message = "\nInvalid deploy_env specified\n\tUsage: cap {command} -S deploy_env={environment}\nReview config\deploy.rb to see what environments are\ncurrently defined.\n\n"
 
 begin; deploy_env; rescue NameError; set :deploy_env, 'integration' end

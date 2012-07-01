@@ -15,4 +15,4 @@ gem "zencoder"
 gem "newrelic_rpm"
 gem "ruby-mysql"
 gem "capistrano"
-
+gem "whenever"
