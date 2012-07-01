@@ -18,6 +18,6 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-ever 10.minutes do
+every 10.minutes do
   rake "views:update"
 end
