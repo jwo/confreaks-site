@@ -30,4 +30,10 @@ class VideoTest < ActiveSupport::TestCase
 
     assert v.slug
   end
+
+  test "views exist" do
+    v = videos(:valid)
+
+    assert v.views, 0
+  end
 end

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120420023650) do
+ActiveRecord::Schema.define(:version => 20120701230022) do
 
   create_table "activities", :force => true do |t|
     t.string   "message"
@@ -125,6 +125,7 @@ ActiveRecord::Schema.define(:version => 20120420023650) do
     t.string   "last_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
     t.string   "twitter_handle"
   end
 
@@ -135,6 +136,13 @@ ActiveRecord::Schema.define(:version => 20120420023650) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "t", :id => false, :force => true do |t|
+    t.integer "i"
+    t.text    "t"
+  end
+
+  add_index "t", ["t"], :name => "t"
 
   create_table "twitter_accounts", :force => true do |t|
     t.integer  "user_id"
@@ -191,10 +199,13 @@ ActiveRecord::Schema.define(:version => 20120420023650) do
     t.text     "note"
     t.integer  "room_id",            :default => 1
     t.string   "youtube_code"
+    t.integer  "views",              :default => 0
+    t.datetime "views_updated_at"
   end
 
   add_index "videos", ["event_id"], :name => "by_event_id"
   add_index "videos", ["recorded_at"], :name => "by_recorded_at"
+  add_index "videos", ["title", "abstract"], :name => "title"
   add_index "videos", ["title"], :name => "by_title"
 
 end
