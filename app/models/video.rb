@@ -89,14 +89,6 @@ class Video < ActiveRecord::Base
     "#{id}-#{slug}"
   end
 
-  def views
-    h = History.count(:all, :conditions => {
-                        :controller => 'videos',
-                        :action => 'show',
-                        :param_id => self.id }
-                      )
-  end
-
   def slug
     parts = Array.new
     parts << event.short_code
