@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120701230022) do
+ActiveRecord::Schema.define(:version => 20120702013458) do
 
   create_table "activities", :force => true do |t|
     t.string   "message"
@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(:version => 20120701230022) do
   end
 
   add_index "histories", ["controller", "action", "param_id"], :name => "by_controller_action_param_id"
+  add_index "histories", ["created_at"], :name => "index_histories_on_created_at"
 
   create_table "organization_users", :force => true do |t|
     t.integer  "organization_id"
@@ -201,6 +202,8 @@ ActiveRecord::Schema.define(:version => 20120701230022) do
     t.string   "youtube_code"
     t.integer  "views",              :default => 0
     t.datetime "views_updated_at"
+    t.integer  "views_last_7",       :default => 0
+    t.integer  "views_last_30",      :default => 0
   end
 
   add_index "videos", ["event_id"], :name => "by_event_id"
