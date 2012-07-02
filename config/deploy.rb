@@ -41,6 +41,7 @@ when 'bluebox'
   set :application, "www.#{domain}"
   role :web, "confreaks.com"
   role :app, "confreaks.com"
+  role :db, "confreaks.com", :primary => true
 else
   puts fail_message
   exit
