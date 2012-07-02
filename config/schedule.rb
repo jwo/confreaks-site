@@ -22,6 +22,6 @@ every 10.minutes do
   rake "views:update"
 end
 
-every 24.hours do
+every 6.hours do
   rake "views:update_periods"
 end
