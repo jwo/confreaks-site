@@ -18,7 +18,8 @@ namespace :views do
       video.save!
     end
     end_time = Time.now
-    a.message = "Updated views took #{end_time - start_time}."
+    a.message = "views:update took #{end_time - start_time}."
+    a.user_id = 1
     a.save
   end
 
@@ -59,7 +60,8 @@ namespace :views do
       video.save!
     end
     end_time = Time.now
-    a.message = "Updated views took #{end_time - start_time}."
+    a.message = "views:update_periods took #{end_time - start_time}."
+    a.user_id = 1
     a.save
   end
 end
