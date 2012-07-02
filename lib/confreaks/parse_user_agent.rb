@@ -61,58 +61,60 @@ module Confreaks
 
       # grab all of the properties (within parens)
       # should be in relation to the agent if possible
-      @detail = @user_agent
+      if @user_agent
+        @detail = @user_agent
 
-      @user_agent.gsub(/\((.*)\)/,'').split(/\s/).each do |part|
-        @detail = @detail.gsub(part,'')
-      end
+        @user_agent.gsub(/\((.*)\)/,'').split(/\s/).each do |part|
+          @detail = @detail.gsub(part,'')
+        end
 
-      @detail = @detail.gsub('(','').gsub(')','').lstrip
-      @properties = @detail.split(/;\s+/)
+        @detail = @detail.gsub('(','').gsub(')','').lstrip
+        @properties = @detail.split(/;\s+/)
 
-      # cycle through the properties to set known quantities
-      @properties.each do |property|
-        if property =~ /^Win/
-          @ostype = 'Windows'
-          @os = property
+        # cycle through the properties to set known quantities
+        @properties.each do |property|
+          if property =~ /^Win/
+            @ostype = 'Windows'
+            @os = property
 
-          if parts = property.split(/ /,2)
-            if parts[1] =~ /^NT/
-              @ostype = 'Windows'
+            if parts = property.split(/ /,2)
+              if parts[1] =~ /^NT/
+                @ostype = 'Windows'
 
-              subparts = parts[1].split(/ /,2)
+                subparts = parts[1].split(/ /,2)
 
-              if subparts[1] == '5'
-                @os_version = '2000'
-              elsif subparts[1] == '5.1'
-                @os_version = 'XP'
-              else
-                @os_version = subparts[1]
+                if subparts[1] == '5'
+                  @os_version = '2000'
+                elsif subparts[1] == '5.1'
+                  @os_version = 'XP'
+                else
+                  @os_version = subparts[1]
+                end
               end
             end
           end
-        end
 
-        if property == 'Macintosh'
-          @ostype = 'Macintosh'
-          @os = property
-        end
+          if property == 'Macintosh'
+            @ostype = 'Macintosh'
+            @os = property
+          end
 
-        if property =~ /OS X/
-          @ostype = 'Macintosh'
-          @os_version = 'OS X'
-          @os = property
-        end
+          if property =~ /OS X/
+            @ostype = 'Macintosh'
+            @os_version = 'OS X'
+            @os = property
+          end
 
-        if property =~ /^Linux/
-          @ostype = 'Linux'
-          @os = property
-        end
+          if property =~ /^Linux/
+            @ostype = 'Linux'
+            @os = property
+          end
 
-        if property =~ /^MSIE/
-          @browser = 'MSIE'
-          @browser_version = property.gsub('MSIE ', '').lstrip
-          @browser_version_major,@browser_version_minor = @browser_version.split('.')
+          if property =~ /^MSIE/
+            @browser = 'MSIE'
+            @browser_version = property.gsub('MSIE ', '').lstrip
+            @browser_version_major,@browser_version_minor = @browser_version.split('.')
+          end
         end
       end
 
