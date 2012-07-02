@@ -28,3 +28,7 @@
     .clear
   -else
     There are no featured videos available at this time.
+%h3.center
+  Top Three Most viewed Videos on Confreaks
+.center
+  =render :partial => 'videos/boxed', :collection => @most_viewed

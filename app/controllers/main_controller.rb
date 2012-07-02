@@ -14,6 +14,8 @@ class MainController < ApplicationController
 
     @player = params[:player] || "html5"
 
+    @most_viewed = Video.find(:all, :order => "views desc", :limit => 3)
+
   end
 
   def contact
