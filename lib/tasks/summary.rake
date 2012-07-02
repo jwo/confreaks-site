@@ -27,9 +27,15 @@ namespace :views do
     puts "Updating number of views for all videos"
     v = Video.find(:all)
     u = User.find_by_username("cobyr")
+
     a = Activity.new
     a.message = "update views"
+
     start_time = Time.now
+
+    mark_7 = (start_time - (86400*7)).strftime("%Y-%m-%d %H:%M:%S")
+    mark_30 = (start_time - (86400*30)).strftime("%Y-%m-%d %H:%M:%S")
+
     v.each do |video|
       puts "\tCalculating views for #{video.id} #{video.title}"
       video.views = History.count(:all, :conditions => {
@@ -42,7 +48,7 @@ namespace :views do
                         :controller => 'videos',
                         :action => 'show',
                         :param_id => video.id,
-                        :created_at => ">= #{Time.now - (86400*7)}"
+                        :created_at => ">= #{mark_7}"
                                          }
                       )
 
@@ -51,7 +57,7 @@ namespace :views do
                         :controller => 'videos',
                         :action => 'show',
                         :param_id => video.id,
-                        :created_at => ">= #{Time.now - (86400*30)}"
+                        :created_at => ">= #{mark_30}"
                                           }
                       )
 
@@ -62,12 +68,5 @@ namespace :views do
     end_time = Time.now
     a.message = "Updated views took #{end_time - start_time}."
     a.save
-
-
-
-
-
-
-
-
+  end
 end
