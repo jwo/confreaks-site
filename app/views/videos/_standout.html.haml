@@ -1,0 +1,11 @@
+.event-box
+  .event-box-outer.tiny
+    .event-box-inner
+      .event-title
+        =link_to standout.event.display_name, event_path(standout.event)
+      .event-title
+        =link_to standout.title, video_path(standout)
+      .event-image
+        =link_to image_tag(standout.image.url(:thumb)), video_path(standout), :class => 'noborder'
+      .event-date
+        =link_to standout.display_presenters, video_path(standout)
