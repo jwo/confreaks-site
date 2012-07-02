@@ -1,0 +1,28 @@
+.module
+  =render :partial => 'shared/corners'
+  .module-inner
+    %h1 Administration
+=render :partial => 'admin/navigation'
+.module
+  =render :partial => 'shared/corners'
+  .module-inner
+    %h2 Activities
+
+.module
+  =render :partial => 'shared/corners'
+  .module-inner
+    %table.admin
+      %tr
+        %th
+          ID
+        %th
+          Message
+        %th
+          User
+        %th
+          Updated
+        %th
+          Time Stamp
+      =render :partial => 'activity', :collection => @activities
+    #pagination
+      =will_paginate @activities, :params => {:controller => 'admin/activities', :action => 'index'}, :class => 'not_ajax'

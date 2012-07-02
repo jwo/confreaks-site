@@ -77,6 +77,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :users
     admin.resources :asset_types
     admin.resources :assets
+    admin.resources :activities
   end
 
   map.zc_callback '/zc-callback',

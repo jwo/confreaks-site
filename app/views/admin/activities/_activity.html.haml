@@ -1,0 +1,12 @@
+%tr
+  %td
+    =activity.id
+  %td
+    =activity.message
+  %td
+    =activity.user.username unless activity.user.nil?
+  %td
+    =time_ago_in_words(activity.created_at)
+    ago
+  %td
+    =activity.created_at.strftime("%Y-%m-%d %H:%M:%S")
