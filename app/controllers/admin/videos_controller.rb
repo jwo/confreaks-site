@@ -136,7 +136,6 @@ class Admin::VideosController < Admin::Controller
     a.save
 
     a.populate_metadata
-    a.description = ""
     a.zencoder_job_complete = true
     a.save
 
