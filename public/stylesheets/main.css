@@ -688,6 +688,7 @@ ul#flash li.success {
     font-size: 2em;
     padding-top: 20px;
     border-bottom: 1px grey solid;
+    margin-bottom: 5px;
 }
 
 .standout_video {
@@ -704,6 +705,7 @@ ul#flash li.success {
 }
 
 .standout_video .image img {
+    margin-top: 5px;
     width: 180px;
     height: 100px;
 }
