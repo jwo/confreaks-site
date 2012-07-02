@@ -14,7 +14,11 @@ class MainController < ApplicationController
 
     @player = params[:player] || "html5"
 
-    @most_viewed = Video.find(:all, :order => "views desc", :limit => 3)
+    @all_time = Video.find(:all, :order => "views desc", :limit => 3)
+
+    @last_7 = Video.find(:all, :order => "views_last_7 desc", :limit =>3)
+
+    @last_30 = Video.find(:all, :order => "views_last_30 desc", :limit => 3)
 
   end
 

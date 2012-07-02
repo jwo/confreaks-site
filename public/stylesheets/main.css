@@ -4,7 +4,7 @@ body {
   margin-left: 0px;
   margin-right: 0px;
   padding: 0;
-  font: 1em/1.5em Georgia, Times, "Times New Roman", serif;
+  font: 1em/1.5em Tahoma, Verdana, helvetica, sans-serif;
   color: #333;
 }
 p { margin-top: 0; }
@@ -549,6 +549,7 @@ ul#flash li.success {
 .video-presenters {
     font-size: 1.2em;
     line-height: 1.6em;
+    font-style: italic;
 }
 
 .video-abstract {
@@ -680,4 +681,29 @@ ul#flash li.success {
     text-align: right;
     float: left;
     width: 180px;
+}
+
+.standout_video_header {
+    text-align: center;
+    font-size: 2em;
+    padding-top: 20px;
+    border-bottom: 1px grey solid;
+}
+
+.standout_video {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.standout_video .presenter {
+    font-style: italic;
+}
+
+.standout_video .title {
+    font-size: 1.25em;
+}
+
+.standout_video .image img {
+    width: 180px;
+    height: 100px;
 }
