@@ -29,12 +29,12 @@
   -else
     There are no featured videos available at this time.
 .standout_video_header
-  Top Three Most viewed Videos Last 7 days
+  Top three most viewed videos - last seven days
 =render :partial => 'videos/standout', :collection => @last_7, :locals => { :days => 7 }
 .standout_video_header
-  Top Three Most viewed Videos Last 30 days
+  Top three most viewed videos - last 30 days
 =render :partial => 'videos/standout', :collection => @last_30, :locals => { :days => 30 }
 .standout_video_header
-  Top Three Most viewed Videos All Time
+  Top three most viewed videos - all time
 =render :partial => 'videos/standout', :collection => @all_time, :locals => { :days => 0 }
 .clear
