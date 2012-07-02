@@ -43,23 +43,16 @@ namespace :views do
                         :action => 'show',
                         :param_id => video.id }
                       )
-      puts "\t\t7 days"
-      video.views_last_7 = History.count(:all, :conditions => {
-                        :controller => 'videos',
-                        :action => 'show',
-                        :param_id => video.id,
-                        :created_at => ">= #{mark_7}"
-                                         }
-                      )
+
+   puts "\t\t7 days"
+      video.views_last_7 = History.count(:all, :conditions => [
+           "controller = ? and action = ? and param_id = ? and created_at >= ?",
+           'videos','show',video.id,mark_7])
 
       puts "\t\t30 days"
-      video.views_last_30 = History.count(:all, :conditions => {
-                        :controller => 'videos',
-                        :action => 'show',
-                        :param_id => video.id,
-                        :created_at => ">= #{mark_30}"
-                                          }
-                      )
+      video.views_last_30 = History.count(:all, :conditions => [
+           "controller = ? and action = ? and param_id = ? and created_at >= ?",
+           'videos','show',video.id,mark_30])
 
 
       video.views_updated_at = Time.now
