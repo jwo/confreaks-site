@@ -1,4 +1,10 @@
 * html { margin: 0; padding: 0; }
+.small-video {
+    width: 200px;
+    height: 150px;
+    float: left;
+}
+
 body {
   margin: 0px;
   margin-left: 0px;
@@ -708,4 +714,26 @@ ul#flash li.success {
     margin-top: 5px;
     width: 180px;
     height: 100px;
+}
+
+.small-video {
+    width: 200px;
+    height: 200px;
+    border: blue 0px solid;
+    float: left;
+    text-align: center;
+    font-size: .8em;
+}
+
+.small-video img {
+    width: 180px;
+    height: 101px;
+    display: block;
+}
+
+.large-video {
+    float: left;
+    width: 806px;
+    height: 700px;
+    border: green 0px solid;
 }

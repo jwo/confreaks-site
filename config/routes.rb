@@ -84,4 +84,6 @@ ActionController::Routing::Routes.draw do |map|
                   :controller => 'admin/videos',
                   :action => 'callback',
                   :method => ['post','get']
+
+  map.altshow  "/videos/:id/altshow", :controller => "videos", :action => "altshow"
 end

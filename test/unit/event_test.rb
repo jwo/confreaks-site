@@ -32,4 +32,10 @@ class EventTest < ActiveSupport::TestCase
 
     refute b
   end
+
+  test "supports private" do
+    event = Event.new
+
+    assert_equal false, event.private
+  end
 end

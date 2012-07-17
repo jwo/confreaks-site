@@ -1,4 +1,6 @@
 class VideosController < ApplicationController
+  layout 'admin', :only => [:altshow]
+
   def index
     if params[:search]
       @videos = Video.search(params[:search],params[:all])
@@ -46,6 +48,36 @@ class VideosController < ApplicationController
                          :conditions => ['event_id = ?',
                                          @video.event_id],
                          :order => 'recorded_at')
+    else
+      flash[:error]="The video '#{@video.title}' is not currently available."
+      redirect_to event_path(@video.event)
+    end
+  end
+
+  def altshow
+    @p = Confreaks::ParseUserAgent.new
+
+    @p.parse request.env["HTTP_USER_AGENT"]
+
+    @player = params[:player] || "html5"
+
+    @video = Video.find(params[:id])
+
+    if (@video.available? && @video.event.ready?) ||
+        (session.user && session.user.admin?)
+      @videos = Video.available.find(:all,
+                         :conditions => ['event_id = ?',
+                                         @video.event_id],
+                         :order => 'recorded_at')
+
+      @videos.each_with_index do |video,i|
+        if @video == video
+          @previous_video = @videos[i-1] unless i == 0
+          @next_video = @videos[i+1]
+          @videos.delete(video)
+        end
+      end
+
     else
       flash[:error]="The video '#{@video.title}' is not currently available."
       redirect_to event_path(@video.event)

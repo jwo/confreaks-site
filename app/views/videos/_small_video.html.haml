@@ -1,0 +1,9 @@
+-videos.each do |small_video|
+  .small-video
+    =link_to image_tag(small_video.image.url(:thumb)), video_path(small_video), :class => 'noborder'
+    =link_to small_video.title, video_path(small_video)
+    %br
+    by
+    =link_to small_video.display_presenters, video_path(small_video)
+
+
