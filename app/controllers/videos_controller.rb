@@ -1,6 +1,4 @@
 class VideosController < ApplicationController
-  layout 'admin', :only => [:altshow]
-
   def index
     if params[:search]
       @videos = Video.search(params[:search],params[:all])
