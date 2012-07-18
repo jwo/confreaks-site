@@ -17,37 +17,48 @@ class EventsController < ApplicationController
   def show
     @event = Event.find_by_identifier(params[:id])
 
-    @data = params[:id] 
+    if !@event.private  || private_authorized(session.user, @event)
 
-    if @event
-      if params[:sort] == 'post'
-        if session.user && session.user.admin?
-          @videos = @event.videos_posted
+      @data = params[:id]
+
+      if @event
+        if params[:sort] == 'post'
+          if session.user && session.user.admin?
+            @videos = @event.videos_posted
+          else
+            @videos = @event.available_videos_posted
+          end
         else
-          @videos = @event.available_videos_posted
+          if session.user && session.user.admin?
+            @videos = @event.videos
+          else
+            @videos = @event.available_videos
+          end
+        end
+      end
+      #recents
+      
+      if @event
+        if session.user && session.user.admin?
+          # do not redirect
+        else
+          # redirect if event is not ready
+          unless @event.nil? || @event.ready
+            redirect_to "http://#{@event.short_code}.confreaks.com", :status => 302
+          end
         end
       else
-        if session.user && session.user.admin?
-          @videos = @event.videos
-        else
-          @videos = @event.available_videos
-        end
+        render :template => 'events/missing_event'
+        #redirect_to '/events/missing/?data='+@data
       end
     end
-    #recents
-
-    if @event
-      if session.user && session.user.admin?
-        # do not redirect
-      else
-        # redirect if event is not ready
-        unless @event.nil? || @event.ready
-          redirect_to "http://#{@event.short_code}.confreaks.com", :status => 302
-        end
-      end
+  else
+    # Failed to access the event
+    if session.user
+      flash[:error] = "You are attempting to access a private event you are not authorized for."
     else
-      render :template => 'events/missing_event'
-      #redirect_to '/events/missing/?data='+@data
+      flash[:error] = "You must login to access a private event."
+      redirect_to new_session_path
     end
   end
 end
