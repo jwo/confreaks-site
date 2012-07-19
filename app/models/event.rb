@@ -13,7 +13,7 @@ class Event < ActiveRecord::Base
            :order => 'recorded_at asc', :conditions => ['available = ?',true]
 
   has_many :available_videos_posted, :class_name => 'Video',
-           :order => 'recorded_at desc', :conditions => ['available = ?', true]
+           :order => 'post_date desc', :conditions => ['available = ?', true]
 
   has_event_calendar
 

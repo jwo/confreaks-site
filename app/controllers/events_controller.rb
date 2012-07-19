@@ -12,7 +12,7 @@ class EventsController < ApplicationController
       @events = Event.active.find(:all, :order => order)
     end
     render :layout => 'admin'
-  end
+end
 
   def show
     @event = Event.find_by_identifier(params[:id])
@@ -35,7 +35,7 @@ class EventsController < ApplicationController
       end
     end
     #recents
-      
+
     if @event
       if session.user && session.user.admin?
         # do not redirect
