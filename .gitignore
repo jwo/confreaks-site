@@ -7,5 +7,6 @@ public/system/events/logos/*/*
 public/system/assets/datas/*/*
 public/system/users/avatars/*/*
 public/system/videos/images/*/*
+public/system/*
 .DS_Store
 *.sql
