@@ -16,14 +16,10 @@ namespace :events do
         puts "\tdirectory exists for this event."
         event.videos.each do |video|
           if video.assets.count == 0
-            puts "\t\tvideo #{video.id}/#{video.title} has no assets, checking for files."
             if File.exists?("#{video_source_dir}/#{video.id}.mp4")
-              puts "\t\tfile exists."
-            else
-              puts "\t\tno file exists."
+              puts "\t\tvideo #{video.id}/#{video.title} has no assets, checking for files."
+              puts "\t\t\tfile exists."
             end
-          else
-            puts "\t\tvideo #{video.id}/#{video.title} alread has assets."
           end
         end
       else
