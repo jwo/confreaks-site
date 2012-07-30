@@ -20,7 +20,7 @@ namespace :events do
             if File.exists?("#{video_source_dir}/#{video.id}.mp4")
               puts "\t\tfile exists."
             else
-              puts "\t\tno file exists.
+              puts "\t\tno file exists."
             end
           else
             puts "\t\tvideo #{video.id}/#{video.title} alread has assets."
