@@ -2,6 +2,9 @@ class MainController < ApplicationController
   def home_page
     recents
 
+    @limit = params[:limit] || 3
+
+    @limit =(@limit.to_i > 50 ? 50 : @limit.to_i)
     if params[:id].nil?
       @video = Video.random
     else
@@ -14,11 +17,11 @@ class MainController < ApplicationController
 
     @player = params[:player] || "html5"
 
-    @all_time = Video.find(:all, :order => "views desc", :limit => 3)
+    @all_time = Video.find(:all, :order => "views desc", :limit => @limit)
 
-    @last_7 = Video.find(:all, :order => "views_last_7 desc", :limit =>3)
+    @last_7 = Video.find(:all, :order => "views_last_7 desc", :limit => @limit)
 
-    @last_30 = Video.find(:all, :order => "views_last_30 desc", :limit => 3)
+    @last_30 = Video.find(:all, :order => "views_last_30 desc", :limit => @limit)
 
   end
 
