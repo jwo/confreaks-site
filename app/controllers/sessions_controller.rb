@@ -21,6 +21,7 @@ class SessionsController < ApplicationController
   end
 
   def new
+    session.bookmark = request.env['HTTP_REFERER']
   end
 
   def destroy
