@@ -14,4 +14,8 @@
       =number_with_delimiter(standout.views_for(days))
       times
       ="#{(days==0 ? "since it was posted" : (days == 7 ? "in the last seven days" : "in the last 30 days"))}."
+    .conference
+      from
+      =link_to standout.event.display_name
+
 .clear
