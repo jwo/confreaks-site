@@ -695,11 +695,16 @@ ul#flash li.success {
     padding-top: 20px;
     border-bottom: 1px grey solid;
     margin-bottom: 5px;
+    line-height: 30px;
 }
 
 .standout_video {
-    text-align: center;
     margin-bottom: 10px;
+}
+
+.standout_video .info {
+    padding: 5px;
+    margin: 10px;
 }
 
 .standout_video .presenter {
@@ -714,6 +719,17 @@ ul#flash li.success {
     margin-top: 5px;
     width: 180px;
     height: 100px;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.standout_video .rank {
+    float:left;
+    width: 45px;
+    font-size: 2em;
+    text-align: center;
+    padding-top: 10px;
 }
 
 .small-video {

@@ -1,13 +1,17 @@
 .standout_video
+  .rank
+    = standout_counter + 1
   .image
     =link_to image_tag(standout.image.url(:thumb)), video_path(standout), :class => 'noborder'
-  .title
-    =link_to standout.title, video_path(standout)
-  .presenter
-    by
-    =link_to standout.display_presenters, video_path(standout)
-  .views
-    Viewed
-    =number_with_delimiter(standout.views_for(days))
-    times
-    ="#{(days==0 ? "since it was posted" : (days == 7 ? "in the last seven days" : "in the last 30 days"))}."
+  .info
+    .title
+      =link_to standout.title, video_path(standout)
+    .presenter
+      by
+      =link_to standout.display_presenters, video_path(standout)
+    .views
+      Viewed
+      =number_with_delimiter(standout.views_for(days))
+      times
+      ="#{(days==0 ? "since it was posted" : (days == 7 ? "in the last seven days" : "in the last 30 days"))}."
+.clear
