@@ -52,6 +52,10 @@ class Event < ActiveRecord::Base
     end
   end
 
+  def self.include_private_in
+    Event.with_exclusive_scope { yield}
+  end
+
   def display_name
     "#{name_prefix} #{conference.name} #{name_suffix}".strip! unless conference.nil?
   end

@@ -7,7 +7,7 @@ class EventsController < ApplicationController
     order = 'start_at desc'
 
     if session.user && session.user.admin?
-      @events = Event.find(:all, :order => order)
+      @events = Event.include_private_in {Event.find(:all, :order => order)}
     else
       @events = Event.active.find(:all, :order => order)
     end
