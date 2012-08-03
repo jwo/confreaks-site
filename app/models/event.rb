@@ -38,6 +38,8 @@ class Event < ActiveRecord::Base
 
   @@per_page = 25
 
+  default_scope :conditions => { :private => false }
+
   def to_param
     short_code || id
   end
