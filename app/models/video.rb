@@ -37,7 +37,10 @@ class Video < ActiveRecord::Base
     },
   :default_url => '/system/:class/:attachment/missing-:style.png'
 
-  named_scope :available, :conditions => ['available = ?', true]
+  named_scope :available, 
+                :joins => 'INNER JOIN events ON videos.event_id = events.id',
+                :conditions => ['videos.available = ? and events.private = ? ', 
+                                true, false]
 
   cattr_reader :per_page
 
@@ -49,7 +52,9 @@ class Video < ActiveRecord::Base
     if all == "1"
       if search
         search_results = self.find(:all,
-                       :conditions => ['title like ?', "%#{search}%"],
+                       :joins => 'INNER JOIN events ON events.id = videos.event_id',
+                       :conditions => ['videos.title like ? and events.private = ?',
+                                       "%#{search}%", false],
                        :order => 'post_date desc')
       else
         search_results = self.find(:all, :order => 'post_date desc')
