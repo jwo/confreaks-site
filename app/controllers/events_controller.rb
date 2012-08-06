@@ -15,7 +15,11 @@ class EventsController < ApplicationController
 end
 
   def show
-    @event = Event.find_by_identifier(params[:id])
+    if session.user && session.user.admin?
+      @event = Event.include_private_in {Event.find_by_identifier(params[:id])}
+    else
+      @event = Event.find_by_identifier(params[:id])
+    end
 
     @data = params[:id]
 
