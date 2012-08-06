@@ -25,14 +25,14 @@ class MainController < ApplicationController
                            :limit => @limit)
 
     @last_7 = Video.find(:all,
-                         :include => [:events],
+                         :include => [:event],
                          :conditions => ['events.private = ? and available = ?',
                                          false, true],
                          :order => "views_last_7 desc",
                          :limit => @limit)
 
     @last_30 = Video.find(:all,
-                          :include => [:events],
+                          :include => [:event],
                           :conditions => ['events.private = ? and available = ?',
                                           false, true],
                           :order => "views_last_30 desc",
