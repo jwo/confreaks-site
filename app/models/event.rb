@@ -38,8 +38,6 @@ class Event < ActiveRecord::Base
 
   @@per_page = 25
 
-  default_scope :conditions => { :private => false }
-
   def to_param
     short_code || id
   end
@@ -53,7 +51,7 @@ class Event < ActiveRecord::Base
   end
 
   def self.include_private_in
-    Event.with_exclusive_scope { yield}
+    Event.with_exclusive_scope {yield}
   end
 
   def display_name
