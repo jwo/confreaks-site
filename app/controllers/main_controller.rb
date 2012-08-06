@@ -2,7 +2,7 @@ class MainController < ApplicationController
   def home_page
     recents
 
-    @limit = params[:limit] || 3
+    @limit = params[:limit] || 5
 
     @limit =(@limit.to_i > 50 ? 50 : @limit.to_i)
     if params[:id].nil?
