@@ -18,7 +18,7 @@ class MainController < ApplicationController
     @player = params[:player] || "html5"
 
     @all_time = Video.find(:all,
-                           :include => [:events],
+                           :include => [:event],
                            :conditions => ['events.private = ? and available = ?',
                                           false, true],
                            :order => "views desc",
