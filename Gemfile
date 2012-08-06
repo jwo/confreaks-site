@@ -17,3 +17,8 @@ gem "ruby-mysql"
 gem "capistrano"
 gem "whenever"
 gem "numbers_and_words"
+
+group :development, :test do
+  gem "modelizer", "= 3.0.0"
+  gem "sqlite3"
+end

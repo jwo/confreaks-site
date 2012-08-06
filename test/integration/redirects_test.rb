@@ -45,8 +45,8 @@ class RedirectsTest < ActionController::IntegrationTest
     assert_response :redirect
   end
 
-  def test_file_redirect_large_mwrc2010
-    get '/redirects/mwrc2010/videos/videos/16-jun-2009-09-00-artisanal-retro-futurism-team-scale-anarcho-syndicalism-brian-marick-large.mp4'
+  def test_file_redirect_large_agileroots2009
+    get '/redirects/agileroots2009/videos/videos/16-jun-2009-09-00-artisanal-retro-futurism-team-scale-anarcho-syndicalism-brian-marick-large.mp4'
 
     assert_response :redirect
   end

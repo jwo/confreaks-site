@@ -17,11 +17,26 @@ class MainController < ApplicationController
 
     @player = params[:player] || "html5"
 
-    @all_time = Video.find(:all, :order => "views desc", :limit => @limit)
+    @all_time = Video.find(:all,
+                           :include => [:events],
+                           :conditions => ['events.private = ? and available = ?',
+                                          false, true],
+                           :order => "views desc",
+                           :limit => @limit)
 
-    @last_7 = Video.find(:all, :order => "views_last_7 desc", :limit => @limit)
+    @last_7 = Video.find(:all,
+                         :include => [:events],
+                         :conditions => ['events.private = ? and available = ?',
+                                         false, true],
+                         :order => "views_last_7 desc",
+                         :limit => @limit)
 
-    @last_30 = Video.find(:all, :order => "views_last_30 desc", :limit => @limit)
+    @last_30 = Video.find(:all,
+                          :include => [:events],
+                          :conditions => ['events.private = ? and available = ?',
+                                          false, true],
+                          :order => "views_last_30 desc",
+                          :limit => @limit)
 
   end
 

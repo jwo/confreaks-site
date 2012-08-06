@@ -84,7 +84,7 @@ class Video < ActiveRecord::Base
     end
 
     random_video = Video.first(:include => [:event],
-                               :conditions => ["streaming_asset_id is not null and available = ? and recorded_at >= ? and events.ready = ?", true, Date.today - 180, true],
+                               :conditions => ["streaming_asset_id is not null and available = ? and recorded_at >= ? and events.ready = ? and events.private = ?", true, Date.today - 180, true, false],
                                :order => order)
 
     return random_video
