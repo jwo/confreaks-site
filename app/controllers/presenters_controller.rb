@@ -15,11 +15,31 @@ class PresentersController < ApplicationController
                                      :limit => 10,
                                      :conditions => conditions.join(" and "),
                                      :page => params[:page])
-
+    respond_to do |format|
+      format.html
+      format.json { render :json => Presenter.find(:all, :order => 'first_name, last_name') }
+    end
   end
 
 
   def show
     @presenter = Presenter.find(params[:id])
+
+    if params[:format] == "json"
+      available_videos = []
+      @presenter.videos.each do |video|
+        if video.available == true
+          available_videos << video
+        end
+      end
+
+
+      @presenter[:available_videos] = available_videos
+    end
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @presenter.to_json  }
+    end
   end
 end

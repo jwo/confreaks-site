@@ -50,6 +50,11 @@ class VideosController < ApplicationController
       flash[:error]="The video '#{@video.title}' is not currently available."
       redirect_to event_path(@video.event)
     end
+
+    respond_to do |format|
+      format.html
+      format.json { render :json  => @video.to_json({ :include => :assets }) }
+    end
   end
 
   def altshow

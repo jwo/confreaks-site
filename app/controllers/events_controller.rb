@@ -11,8 +11,12 @@ class EventsController < ApplicationController
     else
       @events = Event.active.find(:all, :order => order)
     end
-    render :layout => 'admin'
-end
+
+    respond_to do |format|
+      format.html { render :layout => 'admin' }
+      format.json { render :json   => @events.to_json }
+    end
+  end
 
   def show
     @event = Event.find_by_identifier(params[:id])
@@ -48,6 +52,11 @@ end
     else
       render :template => 'events/missing_event'
       #redirect_to '/events/missing/?data='+@data
+    end
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @event.to_json({ :include => :available_videos }) }
     end
   end
 end
