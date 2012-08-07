@@ -562,6 +562,12 @@ ul#flash li.success {
     font-size: 1em;
     padding: 5px;
 }
+
+.video-abstract li {
+    font-size: 80%;
+    text-align: left;
+}
+
 /**************************************************/
 /* Search Results                                 */
 /**************************************************/
