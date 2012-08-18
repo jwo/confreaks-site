@@ -40,7 +40,6 @@ class EventsController < ApplicationController
       if session.user && session.user.admin?
         # do not redirect
       else
-        if @event.private && @event.identifier == "newrelic2012
         unless @event.ready
           redirect_to "http://#{@event.short_code}.confreaks.com", :status => 302
         end
