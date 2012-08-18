@@ -37,4 +37,28 @@ class Admin::AssetsController < Admin::Controller
 
     redirect_to video_path(a.video)
   end
+
+  def update
+    @asset = Asset.find(params[:id])
+    @video = @asset.video
+
+    base_dir = "#{RAILS_ROOT}/../../../source/"
+
+    file = params[:asset][:file_name]
+    full_file = "#{base_dir}#{@video.event.short_code}/#{file}"
+
+    if File.exists?(full_file)
+      @asset.data = File.new(full_file)
+
+      @asset.asset_type_id = 1
+      @asset.description = "1920x1080"
+      @asset.save
+
+      flash[:success]="File: #{full_file} was attached to #{@video.title}"
+    else
+      flash[:error] = "File: #{full_file} does not exist"
+    end
+
+    redirect_to video_path(@video)
+  end
 end

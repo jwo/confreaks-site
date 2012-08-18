@@ -1,0 +1,14 @@
+%h1
+  Attach a Video
+-form_for [:admin, @asset], :html => { :multipart => true} do |f|
+  =error_messages_for(:object => @asset, :message => "You must fix these fields before proceeding", :header_message => nil)
+  %h3
+    File to Attach
+  %p
+    ="Note this file must be uploaded to the /source/#{@video.event.short_code}/ directory on the FTP server."
+    
+  .form-field
+    =f.label :file_name
+    =f.text_field :file_name
+  .form-field
+    =f.submit "Attach"

@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  named_scope :active, 
+  named_scope :active,
               :conditions => ["display = ?",true], 
               :order => 'start_at desc'
 

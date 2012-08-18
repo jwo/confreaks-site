@@ -6,11 +6,7 @@ class EventsController < ApplicationController
   def index
     order = 'start_at desc'
 
-    if session.user && session.user.admin?
-      @events = Event.include_private_in {Event.find(:all, :order => order)}
-    else
-      @events = Event.active.find(:all, :order => order)
-    end
+    @events = Event.active.find(:all, :order => order)
 
     respond_to do |format|
       format.html { render :layout => 'admin' }
@@ -19,11 +15,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    if session.user && session.user.admin?
-      @event = Event.include_private_in {Event.find_by_identifier(params[:id])}
-    else
-      @event = Event.find_by_identifier(params[:id])
-    end
+    @event = Event.find_by_identifier(params[:id])
 
     @data = params[:id]
 
@@ -48,8 +40,8 @@ class EventsController < ApplicationController
       if session.user && session.user.admin?
         # do not redirect
       else
-        # redirect if event is not ready
-        unless @event.nil? || @event.ready
+        if @event.private && @event.identifier == "newrelic2012
+        unless @event.ready
           redirect_to "http://#{@event.short_code}.confreaks.com", :status => 302
         end
       end

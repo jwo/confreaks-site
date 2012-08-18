@@ -19,6 +19,8 @@ class Asset < ActiveRecord::Base
 
   before_save :populate_metadata
 
+  attr_accessor :file_name
+
   def size
     if width && height
       if width > 0 and height > 0

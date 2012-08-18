@@ -87,6 +87,12 @@ class Admin::VideosController < Admin::Controller
 
   def attach
     @video = Video.find(params[:id])
+    @asset = Asset.new
+    @video.assets << @asset
+  end
+
+  def attach_process
+    @video = Video.find(params[:id])
 
     base_dir = "#{RAILS_ROOT}/../../../source/"
     file = "#{@video.id}.mp4"
