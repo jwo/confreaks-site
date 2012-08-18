@@ -44,7 +44,11 @@ class Admin::AssetsController < Admin::Controller
 
     base_dir = "#{RAILS_ROOT}/../../../source/"
 
-    file = params[:asset][:file_name]
+    unless params[:asset][:file_name].blank?
+      file = params[:asset][:file_name]
+    else
+      file = @asset.video.id.to_s + ".mp4"
+    end
     full_file = "#{base_dir}#{@video.event.short_code}/#{file}"
 
     if File.exists?(full_file)
