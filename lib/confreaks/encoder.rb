@@ -3,6 +3,9 @@ module Confreaks
   # this class consists of the logic to submit a job to ZenCoder and Youtube
   # it is a utility class, and instances should not be created.
   class Encoder
+    ##
+    # this method submits the data associated with the asset that is passed
+    # in, to YouTube using the 
     def self.submit_to_youtube asset
       @asset = asset
 
@@ -10,11 +13,11 @@ module Confreaks
 
       title = %&--title="#{@asset.video.title}"&
       category = %&--category="Tech"&
-      description = ""
-      # description = %&--description="#{@asset.video.abstract}"&
+      #description = ""
+      description = %&--description="#{@asset.video.abstract}"&
       keywords = %&--keywords="#{@asset.video.event.short_code}"&
 
-      video_info = [title,category].join(" ")
+      video_info = [title,description,category,keywords].join(" ")
 
       file = "/home/deploy/www.confreaks.net/shared" + @asset.data.url.split("?")[0]
 
