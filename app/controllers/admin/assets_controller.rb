@@ -59,6 +59,17 @@ class Admin::AssetsController < Admin::Controller
       @asset.save
 
       flash[:success]="File: #{full_file} was attached to #{@video.title}"
+
+      @results, @response = Confreaks::Encoder.submit_to_zencoder(@asset)
+
+      flash[:success] += "<br>Video submitted to Zencoder for encoding."
+
+      if Confreaks::Encoder.submit_to_youtube @asset
+        flash[:success] += "<br>Video submitted to Youtube."
+      else
+        flash[:error] = "Video was not successfully submitted to youtube."
+      end
+
     else
       flash[:error] = "File: #{full_file} does not exist"
     end
