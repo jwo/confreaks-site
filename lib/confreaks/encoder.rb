@@ -10,11 +10,12 @@ module Confreaks
       @asset = asset
 
       creds = "--email=coby@confreaks.com --password=c0nFr34k5"
-
+      
       title = %&--title="#{@asset.video.title}"&
       category = %&--category="Tech"&
       #description = ""
-      description = %&--description="#{@asset.video.abstract}"&
+      mod_description = @asset.video.abstract.gsub("!","\!").gsub('"','\"').gsub("'","\'")
+      description = %&--description="#{mod_description}"&
       keywords = %&--keywords="#{@asset.video.event.short_code}"&
 
       video_info = [title,description,category,keywords].join(" ")
