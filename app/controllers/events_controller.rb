@@ -10,7 +10,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       format.html { render :layout => 'admin' }
-      format.json { render :json   => @events.to_json }
+      format.json { render :json   => @events.to_json({ :include => :conference }) }
     end
   end
 
