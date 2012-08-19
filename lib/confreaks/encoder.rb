@@ -16,12 +16,12 @@ module Confreaks
 
       video_info = [title,category].join(" ")
 
-      file = RAILS_ROOT + "/../../shared" + @asset.data.url.split("?")[0]
+      file = "/home/deploy/www.confreaks.net/shared" + @asset.data.url.split("?")[0]
 
       puts video_info
       puts file
 
-      command = "youtube-upload #{creds} #{video_info} #{file}"
+      command = "python /home/deploy/youtube-upload/youtube-upload-0.7.1/bin/youtube-upload #{creds} #{video_info} #{file}"
 
       puts "Command: #{command}"
 
