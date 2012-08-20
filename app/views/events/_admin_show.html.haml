@@ -1,0 +1,38 @@
+-content_for :title do
+  ="#{@event.display_name} Schedule - Confreaks, LLC"
+.center
+  #conflogo
+    =link_to image_tag(@event.logo.url(:original), :alt => @event.display_name, :title => @event.display_name), @event.url, :class => "noborder"
+  #confnotes
+    %em
+      =RDiscount.new(@event.notes || '').to_html
+  %p.right
+    Total views:
+    =number_with_delimiter(@event.available_videos.collect(&:views).sum)
+    %br
+    =link_to 'All Events', events_path
+    -if @event.conference.events.count > 1
+      %br
+      =link_to 'Other Conference Events', @event.conference
+    %br
+    =link_to 'Edit this Event', edit_admin_event_path(@event)
+  .video-twitter
+    =link_to 'Tweet', 'http://twitter.com/share', :class => 'twitter-share-button', 'data-text' => "See the available videos for ##{@event.short_code}", 'data-count' => 'vertical', 'data-via' => 'confreaks'
+    =javascript_include_tag 'http://platform.twitter.com/widgets.js', :type => 'text/javascript'
+  %h2
+    =@event.display_name
+    Schedule
+  ="(#{@event.available_videos.count} presentations available"
+  of
+  =@event.videos.count
+  )
+  %p
+    -if params[:sort] == 'post'
+      =link_to 'Sort by Date Presentations occurred', event_path(@event)
+    -else
+      =link_to 'Sort by Date Posted', event_path(@event, :sort => 'post')
+    |
+    =link_to 'Add Video', new_admin_event_video_path(@event)
+.clear
+.videos
+  =render :partial => 'videos/video', :collection => @videos

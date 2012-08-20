@@ -42,10 +42,11 @@ class EventsController < ApplicationController
       else
         unless @event.ready
           redirect_to "http://#{@event.short_code}.confreaks.com", :status => 302
+          return
         end
       end
     else
-      render :template => 'events/missing_event'
+      #render :template => 'events/missing_event'
       #redirect_to '/events/missing/?data='+@data
     end
 
