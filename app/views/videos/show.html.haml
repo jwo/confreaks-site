@@ -20,6 +20,9 @@
       =link_to edit_image_tag, edit_admin_video_path(@video)
   .video-presenters
     =display_presenters_with_links @video
+  -if @video.license
+    .video-license
+      = render :partial => 'license', :locals => { :video => @video }
   -if @video.note
     .video-note
       =@video.note

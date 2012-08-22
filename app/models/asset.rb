@@ -19,7 +19,7 @@ class Asset < ActiveRecord::Base
 
   before_save :populate_metadata
 
-  attr_accessor :file_name
+  attr_accessor :file_name, :submit_to_youtube, :submit_to_zencoder
 
   def size
     if width && height

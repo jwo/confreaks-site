@@ -63,6 +63,10 @@
     =f.label :include_random, "Include in Featured Videos"
     =f.check_box :include_random
 
+  .form-field
+    =f.label :license
+    =f.select :license, Video::LICENSES, { :include_blank => true}
+
   %h3 Image
   .form-field
     =f.label :image, "Image"

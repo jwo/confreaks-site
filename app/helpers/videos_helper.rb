@@ -7,6 +7,18 @@ module VideosHelper
     out = out [0,out.length-2]
   end
 
+  def display_presenters_with_external_links video
+    out = []
+    video.presenters.each do | presenter|
+      unless presenter.twitter_handle.blank?
+        out << link_to_unless_current(presenter.display_name, "http://twitter.com/#{presenter.twitter_handle}")
+      else
+        out << presenter.display_name
+      end
+    end
+    return out.join(", ")
+  end
+
   def link_to_add_fields(name, f, association)
     new_object = f.object.class.reflect_on_association(association).klass.new
     fields = f.fields_for(association, new_object, :child_index => "new_#{association}") do | builder |

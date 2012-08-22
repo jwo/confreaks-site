@@ -3,7 +3,7 @@ class Video < ActiveRecord::Base
   attr_accessible :available, :title, :recorded_at, :event_id,
     :presentations_attributes, :assets_attributes, :include_random,
     :streaming_asset_id, :image, :abstract, :announce, :announce_date,
-    :post_date, :note, :rating, :youtube_code
+    :post_date, :note, :rating, :youtube_code, :license
 
   validates_presence_of :title
   validates_presence_of :recorded_at
@@ -44,6 +44,8 @@ class Video < ActiveRecord::Base
 
   cattr_reader :per_page
 
+
+  LICENSES = [ "cc-by-sa-3.0" ]
   RATINGS = [ "Not yet Rated", "Everyone", "Language", "Strong Language" ]
 
   @@per_page = 25
@@ -88,6 +90,20 @@ class Video < ActiveRecord::Base
                                :order => order)
 
     return random_video
+  end
+
+  def license_url
+    case self.license
+    when "cc-by-sa-3.0"
+      "http://creativecommons.org/licenses/by-sa/3.0/"
+    end
+  end
+
+  def license_image_file_url
+    case self.license
+    when "cc-by-sa-3.0"
+      "http://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+    end
   end
 
   def to_param

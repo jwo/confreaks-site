@@ -535,6 +535,10 @@ ul#flash li.success {
     float: right;
 }
 
+.video-license {
+    font-size: .75em;
+}
+
 #flash_player {
     text-align: center;
     margin: 0 auto 0;

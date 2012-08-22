@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120717160241) do
+ActiveRecord::Schema.define(:version => 20120822071609) do
 
   create_table "activities", :force => true do |t|
     t.string   "message"
@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(:version => 20120717160241) do
     t.string   "last_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
     t.string   "twitter_handle"
   end
 
@@ -137,6 +138,13 @@ ActiveRecord::Schema.define(:version => 20120717160241) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "t", :id => false, :force => true do |t|
+    t.integer "i"
+    t.text    "t"
+  end
+
+  add_index "t", ["t"], :name => "t"
 
   create_table "twitter_accounts", :force => true do |t|
     t.integer  "user_id"
@@ -186,7 +194,7 @@ ActiveRecord::Schema.define(:version => 20120717160241) do
     t.datetime "image_updated_at"
     t.integer  "streaming_asset_id"
     t.string   "rating",             :default => "Everyone"
-    t.text     "abstract",           :default => ""
+    t.text     "abstract"
     t.datetime "post_date"
     t.boolean  "announce",           :default => false
     t.datetime "announce_date"
@@ -197,10 +205,12 @@ ActiveRecord::Schema.define(:version => 20120717160241) do
     t.datetime "views_updated_at"
     t.integer  "views_last_7",       :default => 0
     t.integer  "views_last_30",      :default => 0
+    t.string   "license",            :default => "cc-by-sa-3.0"
   end
 
   add_index "videos", ["event_id"], :name => "by_event_id"
   add_index "videos", ["recorded_at"], :name => "by_recorded_at"
+  add_index "videos", ["title", "abstract"], :name => "title"
   add_index "videos", ["title"], :name => "by_title"
 
 end

@@ -88,6 +88,8 @@ class Admin::VideosController < Admin::Controller
   def attach
     @video = Video.find(params[:id])
     @asset = Asset.new
+    @asset.submit_to_zencoder = true
+    @asset.submit_to_youtube = true
     @video.assets << @asset
   end
 

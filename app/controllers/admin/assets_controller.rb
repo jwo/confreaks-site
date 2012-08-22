@@ -60,14 +60,17 @@ class Admin::AssetsController < Admin::Controller
 
       flash[:success]="File: #{file} was attached to #{@video.title}"
 
-      @results, @response = Confreaks::Encoder.submit_to_zencoder(@asset)
+      if params[:asset][:submit_to_zencoder].to_i == 1
+        @results, @response = Confreaks::Encoder.submit_to_zencoder(@asset)
 
-      flash[:success] += "<br>Video submitted to Zencoder for encoding."
-
-      if Confreaks::Encoder.submit_to_youtube(@asset)
-        flash[:success] += "<br>Video submitted to Youtube."
-      else
-        flash[:error] = "Video was not successfully submitted to youtube."
+        flash[:success] += "<br>Video submitted to Zencoder for encoding."
+      end
+      if params[:asset][:submit_to_youtube].to_i == 1
+        if Confreaks::Encoder.submit_to_youtube(@asset)
+          flash[:success] += "<br>Video submitted to Youtube."
+        else
+          flash[:error] = "Video was not successfully submitted to youtube."
+        end
       end
 
     else
