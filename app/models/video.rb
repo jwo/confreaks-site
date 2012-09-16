@@ -138,11 +138,15 @@ class Video < ActiveRecord::Base
   end
 
   def display_twitter_presenters
-    out = ""
-    out = self.presenters.each do |p|
-      out += (p.twitter_name.nil? ? p.display_name : p.twitter_name) + ", "
+    out = []
+    self.presenters.each do |p|
+      if p.twitter_name.nil?
+        out << p.display_name
+      else
+        out << (p.twitter_name[0..0] == "@" ? p.twitter_name : "@#{p.twitter_name}")
+      end
     end
-    out = out[0,out.length-2]
+    out.join(", ")
   end
 
   def views_for days = 0
