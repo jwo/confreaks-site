@@ -52,7 +52,7 @@
         =video.streaming_video.nil? ? "None": video.streaming_video.id
         -unless video.youtube_code.blank?
           %br
-          =link_to "Watch this video on Youtube.com", "http://youtube.com/watch?v=#{video.youtube_code}"
+          =link_to "Watch this video on Youtube.com", "http://youtube.com/watch?v=#{video.youtube_code}", :target => "_blank"
   .clear
   .abstract
     -unless video.abstract.empty?
