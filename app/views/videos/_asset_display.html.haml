@@ -5,6 +5,7 @@
       =link_to 'ZC', admin_encode_path(asset_display)
       =link_to 'zcs', admin_encode_small_path(asset_display)
     =link_to 'Refresh', admin_refresh_path(asset_display)
+    =link-to '2 YoutTube', admin_submit_to_youtube(asset_display)
   -else
     -unless asset_display.data_file_name.nil?
       =link_to asset_display.display_description, "#{ActionController::Base.asset_host}#{asset_display.data.url}"

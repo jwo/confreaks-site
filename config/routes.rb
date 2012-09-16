@@ -66,6 +66,10 @@ ActionController::Routing::Routes.draw do |map|
                          :controller => :assets,
                          :action => 'refresh_meta_data'
 
+    admin.submit_to_youtube '/assets/submit_to_youtube/:id',
+                         :controller => :assets,
+                         :action => "submit_to_youtube"
+    
     admin.resources :videos
     admin.resources :events do |event|
       event.resources :videos do |video|
