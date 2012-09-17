@@ -43,7 +43,7 @@ class Admin::AssetsController < Admin::Controller
     @video = @asset.video
 
     if Confreaks::Encoder.submit_to_youtube(@asset)
-      flash[:success] = "<br>Video submitted to Youtube."
+      flash[:success] = "Video submitted to Youtube."
     else
       flash[:error] = "Video was not successfully submitted to youtube."
     end

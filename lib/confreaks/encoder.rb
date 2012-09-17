@@ -8,6 +8,11 @@ module Confreaks
     # in, to YouTube using the 
     def self.submit_to_youtube asset
       @asset = asset
+      video = @asset.video
+      
+      log_file_name = "#{Time.now.strftime('%y-%m-%d-%I-%M-%S')}-#{video.id}-#{video.slug}.log"
+
+      log = File.open(log_file_name, 'w')
 
       creds = "--email=coby@confreaks.com --password=c0nFr34k5"
       
@@ -21,16 +26,17 @@ module Confreaks
       video_info = [title,description,category,keywords].join(" ")
 
       file = "/home/deploy/www.confreaks.net/shared" + @asset.data.url.split("?")[0]
-
-      puts video_info
-      puts file
-
+      log.puts video_info
+      log.puts file
+      
       command = "python /home/deploy/youtube-upload/youtube-upload-0.7.1/bin/youtube-upload #{creds} #{video_info} #{file}"
 
-      puts "Command: #{command}"
+      log.puts "Command: #{command}"
 
       results = `#{command}`
 
+      log.puts "*#{results}*"
+      
       youtube_code = results.split("=")[1]
 
       @asset.video.youtube_code = youtube_code
