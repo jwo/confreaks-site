@@ -16,7 +16,7 @@ module Confreaks
 
       creds = "--email=coby@confreaks.com --password=c0nFr34k5"
       
-      title = %&--title="#{@asset.video.title}"&
+      title = %&--title="#{@asset.video.title} by #{@asset.video.display_presenters}"&
       category = %&--category="Tech"&
       #description = ""
       mod_description = @asset.video.abstract.gsub("!","\!").gsub('"','\"').gsub("'","\'")
@@ -39,9 +39,23 @@ module Confreaks
       
       youtube_code = results.split("=")[1]
 
-      @asset.video.youtube_code = youtube_code
-      @asset.video.save
+      log.puts "You Tube Code: #{youtube_code}"
 
+      unless youtube_code.empty?
+        
+        @asset.video.youtube_code = youtube_code
+        @asset.video.save
+      end
+      
+      log.close
+
+      if youtube_code.empty?
+        out = false
+      else
+        out = true
+      end
+
+      return out
     end
 
     def self.submit_to_zencoder asset, size=nil
