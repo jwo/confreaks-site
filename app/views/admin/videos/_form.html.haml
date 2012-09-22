@@ -7,8 +7,9 @@
       =link_to 'Preview', video_path(@video)
       |
     =link_to 'Conference', event_path(@video.event || @event)
+    |
+    =link_to 'Add New', new_admin_event_video_path(@video.event || @event)
     )
-    =link_to 'Add New Video to this Event', new_admin_event_video(@video.event || @event)
     =f.submit "Save", :class => "button"
     -unless @controller.action_name == "edit"
       =f.submit "Save and add another", :class => "button"
