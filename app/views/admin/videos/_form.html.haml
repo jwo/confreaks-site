@@ -2,12 +2,16 @@
   =error_messages_for(:object => @video, :message => "You must fix these fields before proceeding", :header_message => nil)
   %h3
     Basic Info
+    (
     -unless @controller.action_name =="new"
-      (
       =link_to 'Preview', video_path(@video)
       |
-      =link_to 'Conference', event_path(@video.event)
-      )
+    =link_to 'Conference', event_path(@video.event || @event)
+    )
+    =f.submit "Save", :class => "button"
+    -unless @controller.action_name == "edit"
+      =f.submit "Save and add another", :class => "button"
+      =f.submit "Save and edit", :class => "button"
   .form-field
     =f.label :event, "Event"
     -unless @event

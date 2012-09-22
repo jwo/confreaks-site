@@ -37,6 +37,7 @@ class Admin::VideosController < Admin::Controller
     @asset_types = AssetType.find(:all, :order => 'description')
 
     @event = Event.find_by_identifier(params[:event_id])
+    
     if @event then
       @rooms = Room.find(:all, :conditions => ["event_id = ?",@event.id])
     end
@@ -48,7 +49,13 @@ class Admin::VideosController < Admin::Controller
 
     if @video.save then
       flash[:success] = "The video was created successfully."
-      redirect_to event_path(@video.event)
+      if params[:commit] == "Save and add another"
+        redirect_to new_admin_event_video_path(@video.event)
+      elsif params[:commit]  == "Save and edit"
+        redirect_to edit_admin_video_path @video
+      else
+        redirect_to event_path(@video.event)
+      end
     else
       flash[:error] = "The video was not saved..."
       new
