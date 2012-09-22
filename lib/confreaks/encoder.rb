@@ -41,7 +41,7 @@ module Confreaks
 
       log.puts "You Tube Code: #{youtube_code}"
 
-      unless youtube_code.empty?
+      if youtube_code
         
         @asset.video.youtube_code = youtube_code
         @asset.video.save
