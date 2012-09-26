@@ -14,9 +14,10 @@ body {
   color: #333;
 }
 p { margin-top: 0; }
-img { border: 0; }
 a { color: #333; text-decoration: none; border-bottom: 1px dotted #333; }
 a:hover { border: 0; }
+img { border: 0; }
+
 .noborder { border: 0; }
 
 h1, h2, h3 {
@@ -132,7 +133,7 @@ a.rss {
   float: right;
   position: relative;
   top: 0; right: 0;
-  width: 180px;
+  width: 220px;
   padding-bottom: 20px;
 }
 
@@ -299,6 +300,10 @@ form .field-set .required label {
   clear: both;
 }
 
+.facebook-widget {
+  margin: 0 auto;
+}
+
 /* Event Box */
 ul.event-list {
     list-style: none;
@@ -316,8 +321,12 @@ li.event-box {
 }
 
 .event-box-outer.tiny {
-    width: 180px;
+    width: 210px;
     height: auto;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    margin-bottom: 5px;
 }
 
 .event-box-outer.tiny:hover {
@@ -350,6 +359,11 @@ div.event-box-inner a:link {
 }
 .event-image {
     text-align: center;
+}
+.event-image img {
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
 }
 .event-date {
     font-size: 65%;
@@ -588,9 +602,10 @@ ul#flash li.success {
 }
 
 .video {
-    border-bottom: #c0c0c0 1px dotted;
-    margin-bottom: 5px;
+    margin-top: 5px;
     font-size: .9em;
+    border-bottom: silver 1px dotted;
+    display: block;
 }
 
 .search_result {
@@ -611,6 +626,7 @@ ul#flash li.success {
     width: 90px;
     font-size: .8em;
     float: left;
+    margin-right: 3px;
 }
 
 .search_result .recorded-at {
@@ -621,6 +637,16 @@ ul#flash li.success {
 .video .thumbnail {
     float: left;
     width: 150px;
+}
+
+.video .thumbnail a {
+    border-bottom: 0px;
+}
+
+.video .thumbnail img {
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
 }
 
 .search_result .thumbnail {
@@ -732,6 +758,9 @@ ul#flash li.success {
     float: left;
     margin-right: 10px;
     margin-bottom: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
 }
 
 .standout_video .rank {
