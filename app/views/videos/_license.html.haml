@@ -4,7 +4,7 @@
       This presentation, by
       =display_presenters_with_external_links(video)
       , is licensed under a
-      =link_to video.license_title, video.license_url, :rel => "license"
+      =link_to video.license_title, video.license_url, :rel => "license", :target => "_blank"
       -if video.license_image_file_url
         %br
         %a{ :rel => "license", :href => video.license_url }
