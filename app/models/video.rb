@@ -3,7 +3,8 @@ class Video < ActiveRecord::Base
   attr_accessible :available, :title, :recorded_at, :event_id,
     :presentations_attributes, :assets_attributes, :include_random,
     :streaming_asset_id, :image, :abstract, :announce, :announce_date,
-    :post_date, :note, :rating, :youtube_code, :license
+  :post_date, :note, :rating, :youtube_code, :license, :attribution,
+  :use_event_note_for_attribution
 
   validates_presence_of :title
   validates_presence_of :recorded_at
@@ -45,7 +46,8 @@ class Video < ActiveRecord::Base
   cattr_reader :per_page
 
 
-  LICENSES = [ "cc-by-sa-3.0" ]
+  LICENSES = [ "cc-by-sa-3.0", "cc-by-nc-sa-2.0-uk" ]
+  
   RATINGS = [ "Not yet Rated", "Everyone", "Language", "Strong Language" ]
 
   @@per_page = 25
@@ -92,10 +94,21 @@ class Video < ActiveRecord::Base
     return random_video
   end
 
+  def license_title
+    case self.license
+    when "cc-by-sa-3.0"
+      "Creative Commons Attribution ShareAlike 3.0"
+    when "cc-by-nc-sa-2.0-uk"
+      "Creative Commons Attribution-NonCommercial-ShareAlike 2.0 UK: England & Wales"
+    end
+  end
+  
   def license_url
     case self.license
     when "cc-by-sa-3.0"
       "http://creativecommons.org/licenses/by-sa/3.0/"
+    when "cc-by-nc-sa-2.0-uk"
+      "http://creativecommons.org/licenses/by-nc-sa/2.0/uk/"
     end
   end
 
@@ -103,6 +116,8 @@ class Video < ActiveRecord::Base
     case self.license
     when "cc-by-sa-3.0"
       "http://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+    when "cc-by-nc-sa-2.0-uk"
+      nil
     end
   end
 

@@ -52,6 +52,14 @@
     =f.label :note, "Note"
     =f.text_area :note, :cols => 60, :rows => 4
 
+  .form-field
+    =f.label :use_event_note_for_attribution, "Use Event Note for Attribution"
+    =f.check_box :use_event_note_for_attribution
+
+  .form-field
+    =f.label :attribution, "Attribution"
+    =f.text_area :attribution, :cols => 60, :rows => 2
+
   %h3 Site behavior details
   .form-field
     =f.label :streaming_asset_id, "Streaming Video"

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120822071609) do
+ActiveRecord::Schema.define(:version => 20121113211741) do
 
   create_table "activities", :force => true do |t|
     t.string   "message"
@@ -187,25 +187,27 @@ ActiveRecord::Schema.define(:version => 20120822071609) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "available"
-    t.boolean  "include_random",     :default => true
+    t.boolean  "include_random",                 :default => true
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "streaming_asset_id"
-    t.string   "rating",             :default => "Everyone"
+    t.string   "rating",                         :default => "Everyone"
     t.text     "abstract"
     t.datetime "post_date"
-    t.boolean  "announce",           :default => false
+    t.boolean  "announce",                       :default => false
     t.datetime "announce_date"
     t.text     "note"
-    t.integer  "room_id",            :default => 1
+    t.integer  "room_id",                        :default => 1
     t.string   "youtube_code"
-    t.integer  "views",              :default => 0
+    t.integer  "views",                          :default => 0
     t.datetime "views_updated_at"
-    t.integer  "views_last_7",       :default => 0
-    t.integer  "views_last_30",      :default => 0
-    t.string   "license",            :default => "cc-by-sa-3.0"
+    t.integer  "views_last_7",                   :default => 0
+    t.integer  "views_last_30",                  :default => 0
+    t.string   "license",                        :default => "cc-by-sa-3.0"
+    t.text     "attribution"
+    t.boolean  "use_event_note_for_attribution", :default => false
   end
 
   add_index "videos", ["event_id"], :name => "by_event_id"

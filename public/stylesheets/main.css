@@ -553,6 +553,17 @@ ul#flash li.success {
     font-size: .75em;
 }
 
+.video-attribution {
+    font-size: .75em;
+    margin: 5px;
+    border: 1px gray solid;
+    background: silver;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+
+}
+
 #flash_player {
     text-align: center;
     margin: 0 auto 0;
