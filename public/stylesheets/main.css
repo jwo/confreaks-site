@@ -556,6 +556,7 @@ ul#flash li.success {
 .video-attribution {
     font-size: .75em;
     margin: 5px;
+    padding: 5px;
     border: 1px gray solid;
     background: silver;
     -moz-border-radius: 5px;
