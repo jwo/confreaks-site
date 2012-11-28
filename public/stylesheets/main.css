@@ -804,3 +804,28 @@ ul#flash li.success {
     height: 700px;
     border: green 0px solid;
 }
+.pitch {
+    margin: 5px;
+    padding: 5px;
+}
+
+.testimonial {
+    margin: 5px;
+    padding: 5px 25px;
+    }
+
+.testimonial .quote {
+    font-style: italic;
+}
+
+.testimonials h2 {
+    margin-top: 50px;
+}
+
+.testimonial .author {
+    float: right;
+}
+
+.testimonal .title {
+    font-weight: bold;
+}

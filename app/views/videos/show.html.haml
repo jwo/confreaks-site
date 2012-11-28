@@ -12,6 +12,8 @@
       #html5_player
         =render :partial => 'videos/video_player_html5', :locals => { :video => @video }
   .video-twitter
+    = render :partial => 'shared/google_plus_one'
+
     =link_to 'Tweet', 'http://twitter.com/share', :class => 'twitter-share-button', 'data-text' => "#{@video.title} by #{@video.display_twitter_presenters}", 'data-count' => 'vertical', 'data-via' => 'confreaks'
     =javascript_include_tag 'http://platform.twitter.com/widgets.js', :type => 'text/javascript'
   .video-title
