@@ -26,6 +26,8 @@ class EventsController < ApplicationController
         else
           @videos = @event.available_videos_posted
         end
+      elsif params[:sort] == "unfinished" && session.user && session.user.admin?
+        @videos = @event.videos.select {|v| v.available == false}
       else
         if session.user && session.user.admin?
           @videos = @event.videos

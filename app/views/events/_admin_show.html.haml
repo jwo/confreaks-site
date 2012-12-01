@@ -33,6 +33,8 @@
       =link_to 'Sort by Date Posted', event_path(@event, :sort => 'post')
     |
     =link_to 'Add Video', new_admin_event_video_path(@event)
+    |
+    = link_to 'only unfinished', event_path(@event, :sort => 'unfinished')
 .clear
 .videos
   =render :partial => 'videos/video', :collection => @videos
