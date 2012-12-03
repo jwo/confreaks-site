@@ -1,7 +1,7 @@
 -if @event
   -if session.user && session.user.admin?
-    =render :partial=> 'admin_show'
+    =render :partial=> 'events/admin_show'
   -else
-    =render :partial => 'show'
+    =render :partial => 'events/show'
 -else
-  =render :partial => 'missing_event'
+  =render :partial => 'events/missing_event'
