@@ -24,8 +24,8 @@ class Admin::EventsController < Admin::Controller
   end
 
   def show
-    @event = Event.find_by_identifier(params[:id])
-    render :template => 'events/show'
+    event = Event.find_by_identifier(params[:id])
+    redirect_to event_path(event)
   end
 
   def create
