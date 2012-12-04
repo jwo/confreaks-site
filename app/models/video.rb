@@ -132,6 +132,12 @@ class Video < ActiveRecord::Base
     parts.join("-")
   end
 
+  def bliptv_code
+    if youtube_code =~ /^bliptv/
+      youtube_code.split("|")[1]
+    end
+  end
+  
   def streaming_video_url
     # TODO figure out how to remove the need for this stupid hack
     # paperclip adds the cache buster to the URL automatically, I need
