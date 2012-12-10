@@ -53,7 +53,10 @@
         -unless video.youtube_code.blank?
           %br
           -if video.bliptv_code.blank?
-            =link_to "Watch this video on Youtube.com", "http://youtube.com/watch?v=#{video.youtube_code}", :target => "_blank"
+            -if video.vimeo_code.blank?
+              =link_to "Watch this video on Youtube.com", "http://youtube.com/watch?v=#{video.youtube_code}", :target => "_blank"
+            -else
+              =link_to "Watch this video on Vimeo.com", "http://vimeo.com/#{video.vimeo_code}", :target => "_blank"
 
     .clear
     .abstract

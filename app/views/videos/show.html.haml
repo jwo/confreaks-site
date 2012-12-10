@@ -9,6 +9,8 @@
     -unless @video.youtube_code.blank?
       -if @video.youtube_code =~ /^bliptv/
         = render :partial => 'videos/bliptv', :locals => {:video => @video}
+      -elsif @video.youtube_code =~ /^vimeo/
+        = render :partial => 'videos/vimeo_player', :locals => {:video => @video}
       -else
         =render :partial => 'videos/youtube_player', :locals => {:video => @video}
     -else

@@ -137,6 +137,12 @@ class Video < ActiveRecord::Base
       youtube_code.split("|")[1]
     end
   end
+
+  def vimeo_code
+    if youtube_code =~ /^vimeo/
+      youtube_code.split("|")[1]
+    end
+  end
   
   def streaming_video_url
     # TODO figure out how to remove the need for this stupid hack
