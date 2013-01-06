@@ -14,6 +14,6 @@ class Conference < ActiveRecord::Base
   end
 
   def slug
-    name.gsub(" ","-").downcase
+    name.gsub(" ","-").gsub(".","-").downcase
   end
 end
