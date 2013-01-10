@@ -139,13 +139,6 @@ ActiveRecord::Schema.define(:version => 20121113211741) do
     t.datetime "updated_at"
   end
 
-  create_table "t", :id => false, :force => true do |t|
-    t.integer "i"
-    t.text    "t"
-  end
-
-  add_index "t", ["t"], :name => "t"
-
   create_table "twitter_accounts", :force => true do |t|
     t.integer  "user_id"
     t.string   "token"

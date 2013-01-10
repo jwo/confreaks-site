@@ -18,14 +18,7 @@ class RedirectsController < ApplicationController
   def process_redirect type
     @event = Event.find_by_identifier(params[:redirect_id])
 
-    case @event.short_code
-    when "agileroots2009"
-      if type == "page"
-        process_page_redirect
-      elsif type == "file"
-        process_file_redirect_based_on_date
-      end
-    when "mwrc2010"
+    if %w(agileroots2009 mwrc2010).include?(@event.short_code)
       if type == "page"
         process_page_redirect
       elsif type == "file"
@@ -61,7 +54,7 @@ class RedirectsController < ApplicationController
   def redirect_event_block(event,&blk)
     date = date_from_params
     event.videos.each do |video|
-      if video.recorded_at == date
+      if video.recorded_at.to_date == date.to_date
         yield video
       end
     end

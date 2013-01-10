@@ -51,6 +51,5 @@ class RedirectsTest < ActionController::IntegrationTest
     assert_response :redirect
   end
 
-  def test_
 
 end
