@@ -1,7 +1,7 @@
 source :rubygems
 
 gem "rake"
-gem "rails",         "= 2.3.14"
+gem "rails",         "= 2.3.15"
 gem "uuid",          "= 2.3.1"
 gem "will_paginate", "= 2.3.14"
 gem "haml",          "= 3.0.6"
